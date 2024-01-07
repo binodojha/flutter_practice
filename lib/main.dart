@@ -5,6 +5,7 @@ import 'package:my_app/AnimatedPage.dart';
 import 'package:my_app/DiceApp.dart';
 import 'package:my_app/SplashScreen.dart';
 import 'package:my_app/TrailPage.dart';
+import 'package:my_app/quizPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -133,6 +134,27 @@ class HomePage extends StatelessWidget {
 
             SizedBox(
               height: 10,
+            ),
+            ElevatedButton(
+              style: ButtonStyle(
+                shape: MaterialStateProperty.all<OutlinedBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                ),
+              ),
+              onPressed: () {
+                Navigator.push(
+                  BuildContext,
+                  MaterialPageRoute(
+                    builder: (context) => QuizePage(),
+                  ),
+                );
+              },
+              child: const Text(
+                "Click for Quiz App Page",
+                style: TextStyle(color: Colors.blue, fontSize: 18),
+              ),
             ),
           ],
         ),
