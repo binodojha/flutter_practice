@@ -12,9 +12,11 @@ class _QuizePageState extends State<QuizePage> {
     'The Pacific Ocean is the largest ocean on Earth',
     'Mount Everest is the tallest mountain in the world',
     'The Great Wall of China is visible from the moon',
+    'Honey never spoils',
+    'The Statue of Liberty was a gift from France'
   ];
   int questionNumber = 0;
-  List<bool> answers = [false, true, true, false];
+  List<bool> answers = [false, true, true, false, true, true];
 
   @override
   Widget build(BuildContext context) {
