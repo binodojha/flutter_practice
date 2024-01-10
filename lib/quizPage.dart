@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/quizBrain.dart';
 
 class QuizePage extends StatefulWidget {
   @override
@@ -7,16 +8,7 @@ class QuizePage extends StatefulWidget {
 
 class _QuizePageState extends State<QuizePage> {
   List<Icon> scoreKepper = [];
-  List<String> questions = [
-    'The Earth is the only planet in our solar system that supports life.',
-    'The Pacific Ocean is the largest ocean on Earth',
-    'Mount Everest is the tallest mountain in the world',
-    'The Great Wall of China is visible from the moon',
-    'Honey never spoils',
-    'The Statue of Liberty was a gift from France'
-  ];
-  int questionNumber = 0;
-  List<bool> answers = [false, true, true, false, true, true];
+  QuizBrain quizBrain = QuizBrain();
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +42,7 @@ class _QuizePageState extends State<QuizePage> {
                     padding: const EdgeInsets.all(10.0),
                     child: Center(
                       child: Text(
-                        questions[questionNumber],
+                        quizBrain.getQuestion(),
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 25.0,
@@ -70,7 +62,7 @@ class _QuizePageState extends State<QuizePage> {
                         backgroundColor: Colors.green,
                       ),
                       onPressed: () {
-                        if (answers[questionNumber] == true) {
+                        if (quizBrain.getAnswer() == true) {
                           scoreKepper.add(
                             const Icon(
                               Icons.check,
@@ -87,10 +79,7 @@ class _QuizePageState extends State<QuizePage> {
                         }
                         setState(
                           () {
-                            questionNumber++;
-                            if (questionNumber == questions.length) {
-                              questionNumber = 0;
-                            }
+                            quizBrain.nextQuestions();
                             if (scoreKepper.length == 15) {
                               scoreKepper = [];
                             }
@@ -118,7 +107,7 @@ class _QuizePageState extends State<QuizePage> {
                         backgroundColor: Colors.red,
                       ),
                       onPressed: () {
-                        if (answers[questionNumber] == false) {
+                        if (quizBrain.getAnswer() == false) {
                           scoreKepper.add(
                             const Icon(
                               Icons.check,
@@ -134,10 +123,7 @@ class _QuizePageState extends State<QuizePage> {
                           );
                         }
                         setState(() {
-                          questionNumber++;
-                          if (questionNumber == questions.length) {
-                            questionNumber = 0;
-                          }
+                          quizBrain.nextQuestions();
                           if (scoreKepper.length == 15) {
                             scoreKepper = [];
                           }
